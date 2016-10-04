@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 import time, unittest
 
@@ -10,9 +11,9 @@ def is_alert_present(wd):
     except:
         return False
 
-class (unittest.TestCase):
+class test_add_group1(unittest.TestCase):
     def setUp(self):
-        self.wd = WebDriver()
+        self.wd = webdriver.Chrome(executable_path="C:\\chromedriver_win32\\chromedriver.exe")
         self.wd.implicitly_wait(60)
     
     def test_(self):
@@ -38,8 +39,7 @@ class (unittest.TestCase):
         wd.find_element_by_name("group_header").send_keys("grupa lesson1")
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys("grupa lesson1
-")
+        wd.find_element_by_name("group_header").send_keys("grupa lesson1")
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys("grupa lesson1")
