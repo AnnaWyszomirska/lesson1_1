@@ -1,8 +1,8 @@
-from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
 
 class ContactApplication():
     def __init__(self):
-        self.wd = webdriver.Chrome(executable_path="C:\\chromedriver_win32\\chromedriver.exe")
+        self.wd = WebDriver(executable_path="C:\\chromedriver_win32\\chromedriver.exe")
         self.wd.implicitly_wait(60)
 
     def open_home_page(self):
@@ -117,7 +117,7 @@ class ContactApplication():
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.comments)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        self.return_to_homepage(wd)
+        self.return_to_homepage()
 
     def return_to_homepage(self):
         wd = self.wd
