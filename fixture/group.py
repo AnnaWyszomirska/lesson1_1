@@ -1,27 +1,13 @@
-from selenium import webdriver
-from fixture.session import SessionHelper
-from fixture.group import GroupHelper
-
-
-class Application:
-
+class GroupHelper:
     def __init__(self):
-        self.wd = webdriver.Chrome(executable_path="C:\\chromedriver_win32\\chromedriver.exe")
-        self.wd.implicitly_wait(60)
-        self.session = SessionHelper(self)
-        self.group = GroupHelper(self)
-
-    def open_home_page(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/addressbook/group.php")
-
+        self.app = app
 
     def open_groups_page(self):
-        wd = self.wd
+        wd = self.app.wd
         wd.find_element_by_link_text("grupy").click()
 
-    def create_group(self, group):
-        wd = self.wd
+    def create(self, group):
+        wd = self.app.wd
         self.open_groups_page()
         # init group creation
         wd.find_element_by_name("new").click()
@@ -44,9 +30,5 @@ class Application:
         self.return_to_group_page()
 
     def return_to_group_page(self):
-        wd = self.wd
+        wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
-
-
-    def destroy(self):
-        self.wd.quit()
