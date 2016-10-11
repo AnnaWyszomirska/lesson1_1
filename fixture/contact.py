@@ -96,7 +96,7 @@ class ContactHelper:
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
         wd.find_element_by_name("phone2").send_keys(contact.privatephone)
-        #add_comments(self, wd, contact):
+        #add_comments
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.comments)
@@ -112,6 +112,86 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
         self.return_to_homepage()
+
+    def change_contact(self, contact_change):
+        wd = self.app.wd
+        wd.find_element_by_link_text("strona główna").click()
+        #select first contact
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_css_selector("img[alt=\"Edytuj\"]").click()
+        #enter some new value for contact
+        # enter name
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact_change.firstname1)
+        # enter middlename
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(contact_change.middlename1)
+        # enter lastname
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact_change.lastname1)
+        # enter nickname
+        wd.find_element_by_name("nickname").click()
+        wd.find_element_by_name("nickname").clear()
+        wd.find_element_by_name("nickname").send_keys(contact_change.nickname1)
+        # enter title
+        wd.find_element_by_name("title").click()
+        wd.find_element_by_name("title").clear()
+        wd.find_element_by_name("title").send_keys(contact_change.title1)
+        # enter company name
+        wd.find_element_by_name("company").click()
+        wd.find_element_by_name("company").clear()
+        wd.find_element_by_name("company").send_keys(contact_change.company1)
+        # address_information
+        wd.find_element_by_name("address").click()
+        wd.find_element_by_name("address").clear()
+        wd.find_element_by_name("address").send_keys(contact_change.address1)
+        # telephones_numbers
+        # enter home number
+        wd.find_element_by_name("home").click()
+        wd.find_element_by_name("home").clear()
+        wd.find_element_by_name("home").send_keys(contact_change.home1)
+        # enter mobile number
+        wd.find_element_by_name("mobile").click()
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact_change.mobile1)
+        # enter work number
+        wd.find_element_by_name("work").click()
+        wd.find_element_by_name("work").clear()
+        wd.find_element_by_name("work").send_keys(contact_change.work1)
+        # enter fax number
+        wd.find_element_by_name("fax").click()
+        wd.find_element_by_name("fax").clear()
+        wd.find_element_by_name("fax").send_keys(contact_change.fax1)
+        # enter first email address
+        wd.find_element_by_name("email").click()
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact_change.email1)
+        # enter second email address
+        wd.find_element_by_name("email2").click()
+        wd.find_element_by_name("email2").clear()
+        wd.find_element_by_name("email2").send_keys(contact_change.email21)
+        # enter third email address
+        wd.find_element_by_name("email3").click()
+        wd.find_element_by_name("email3").clear()
+        wd.find_element_by_name("email3").send_keys(contact_change.email31)
+        # enter second_address
+        wd.find_element_by_name("address2").click()
+        wd.find_element_by_name("address2").clear()
+        wd.find_element_by_name("address2").send_keys(contact_change.address21)
+        # add second_private_number
+        wd.find_element_by_name("phone2").click()
+        wd.find_element_by_name("phone2").clear()
+        wd.find_element_by_name("phone2").send_keys(contact_change.privatephone1)
+        # add_comments(self, wd, contact):
+        wd.find_element_by_name("notes").click()
+        wd.find_element_by_name("notes").clear()
+        wd.find_element_by_name("notes").send_keys(contact_change.comments1)
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.return_to_homepage()
+
 
     def return_to_homepage(self):
         wd = self.app.wd
