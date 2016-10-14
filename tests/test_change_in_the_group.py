@@ -1,7 +1,7 @@
 
-from model.group_change import GroupChange
+from model.group import Group
 
 def test_change_in_the_group(app):
     app.session.login(username="admin", password="secret")
-    app.group.change_group(GroupChange(name1="changed name", header1="changed header", footer1="changed footer"))
+    app.group.change_group(Group(name="changed name", header="changed header", footer="changed footer"))
     app.session.logout()
