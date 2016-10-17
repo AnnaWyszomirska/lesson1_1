@@ -2,7 +2,6 @@
 from model.contact import Contact
 
 def test_change_in_the_contact(app):
-    app.session.login(username="admin", password="secret")
     app.contact.change_contact(Contact(firstname="Changed name", middlename="Changed", lastname="Changed",
                                 nickname="Changed",
                                 title="Changed title", company="Changed", address="Changed address",
@@ -16,4 +15,3 @@ def test_change_in_the_contact(app):
                                 address2="changed", privatephone="222222",
                                 comments="I want to add comment"
                                 ))
-    app.session.logout()
