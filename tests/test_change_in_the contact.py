@@ -2,7 +2,7 @@
 from model.contact import Contact
 
 def test_change_in_the_contact(app):
-    if app.contact.count_contact == 0:
+    if app.contact.count_contact() == 0:
         app.contact.add(Contact(firstname="Test", middlename="Test", lastname="Test", nickname="Test",
                                 title="Test", company="Test", address="Test",
                                 home="Test", mobile="Test", work="Test", fax="Test",
