@@ -3,8 +3,10 @@
 from model.contact import Contact
 
 
+
 def test_add_contact(app):
-    app.contact.add(Contact(firstname="Anna", middlename="Joanna", lastname="Wyszomirska", nickname="aneczka",
+    old_contacts = app.contact.get_contact_list()
+    contact = Contact(firstname="Anna", middlename="Joanna", lastname="Wyszomirska", nickname="aneczka",
                             title="Title", company="New Company", address="My address information",
                             home="34725475263", mobile="32456234236", work="2364623645", fax="243256452",
                             email="aniawzs@wp.pl", email2="test1@gmail.com", email3="test2@gmail.com",
@@ -14,6 +16,9 @@ def test_add_contact(app):
                             aday="//div[@id='content']/form/select[3]//option[19]",
                             amonth="//div[@id='content']/form/select[4]//option[3]",
                             address2="My second address ", privatephone="23415257354735",
-                            comments="Brak uwag"
-                            ))
-
+                            comments="Brak uwag")
+    app.contact.add(contact)
+    new_contacts = app.contact.get_contact_list()
+    assert len(old_contacts) + 1 == len(new_contacts)
+    old_contacts.append(contact)
+    assert sorted(old_contacts, key = Contact.id_or_max) == sorted(new_contacts, key = Contact.id_or_max)
