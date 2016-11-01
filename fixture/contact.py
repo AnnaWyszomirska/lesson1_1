@@ -69,7 +69,7 @@ class ContactHelper:
 
     def delete_contact_by_index(self, index):
         wd=self.app.wd
-        self.open_homepage()
+        self.app.open_home_page()
         self.select_contact_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
@@ -83,7 +83,7 @@ class ContactHelper:
 
     def change_contact_by_index(self, index, contact):
         wd = self.app.wd
-        self.open_homepage()
+        self.app.open_home_page()
         self.select_contact_by_index(index)
         contact_row = wd.find_elements_by_name("entry")[index]
         cell = contact_row.find_elements_by_tag_name("td")[7]
@@ -103,14 +103,14 @@ class ContactHelper:
 
     def count_contact(self):
         wd = self.app.wd
-        self.open_homepage()
+        self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     contact_cache = None
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
-            self.open_homepage()
+            self.app.open_home_page()
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
                 cells = element.find_elements_by_tag_name("td")
@@ -118,6 +118,6 @@ class ContactHelper:
                 text2 = cells[2].text
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 self.contact_cache.append(Contact(firstname= text2, lastname= text1, id = id))
-            return list(self.contact_cache)
+        return list(self.contact_cache)
 
 
