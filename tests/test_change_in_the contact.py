@@ -14,7 +14,7 @@ def test_change_in_the_contact(app):
 
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(birthyear="Test", annyear="Test",
+    contact = Contact(firstname= "New name", lastname = "New name", birthyear="Test", annyear="Test",
                                 bday="//div[@id='content']/form/select[1]//option[4]",
                                 bmonth= "//div[@id='content']/form/select[2]//option[3]",
                                 aday="//div[@id='content']/form/select[3]//option[19]",

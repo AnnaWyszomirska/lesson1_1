@@ -9,7 +9,7 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("nowy wpis").click()
 
-    def open_home_page(self):
+    def open_homepage(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook/")):
             wd.find_element_by_link_text("strona główna").click()
@@ -69,7 +69,7 @@ class ContactHelper:
 
     def delete_contact_by_index(self, index):
         wd=self.app.wd
-        self.open_home_page()
+        self.open_homepage()
         self.select_contact_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
@@ -83,11 +83,13 @@ class ContactHelper:
 
     def change_contact_by_index(self, index, contact):
         wd = self.app.wd
-        self.open_home_page()
+        self.open_homepage()
         self.select_contact_by_index(index)
-        wd.find_element_by_css_selector("img[alt=\"Edytuj\"]").click()
+        contact_row = wd.find_elements_by_name("entry")[index]
+        cell = contact_row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
         self.fill_contact_form(contact)
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        wd.find_element_by_css_selector("input[name='update']").click()
         self.return_to_homepage()
         self.contact_cache = None
 
@@ -101,20 +103,20 @@ class ContactHelper:
 
     def count_contact(self):
         wd = self.app.wd
-        self.open_home_page()
+        self.open_homepage()
         return len(wd.find_elements_by_name("selected[]"))
 
     contact_cache = None
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
-            self.open_home_page()
+            self.open_homepage()
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
                 cells = element.find_elements_by_tag_name("td")
                 text1 = cells[1].text
                 text2 = cells[2].text
-                id = element.find_element_by_name("selected[]").get_attribute("value")
+                id = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 self.contact_cache.append(Contact(firstname= text2, lastname= text1, id = id))
             return list(self.contact_cache)
 
