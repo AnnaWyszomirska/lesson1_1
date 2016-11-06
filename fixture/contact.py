@@ -48,15 +48,15 @@ class ContactHelper:
         self.change_field_value("email2", contact.email2)
         self.change_field_value("email3", contact.email3)
         self.change_field_value("homepage", contact.homepage)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[4]").is_selected():
-            wd.find_element_by_xpath(contact.bday).click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").is_selected():
-            wd.find_element_by_xpath(contact.bmonth).click()
-        self.change_field_value("byear", contact.birthyear)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[19]").is_selected():
-            wd.find_element_by_xpath(contact.aday).click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[3]").is_selected():
-            wd.find_element_by_xpath(contact.amonth).click()
+        #if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[4]").is_selected():
+            #wd.find_element_by_xpath(contact.bday).click()
+        #if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[3]").is_selected():
+            #wd.find_element_by_xpath(contact.bmonth).click()
+        #self.change_field_value("byear", contact.birthyear)
+        #if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[19]").is_selected():
+            #wd.find_element_by_xpath(contact.aday).click()
+        #if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[3]").is_selected():
+            #wd.find_element_by_xpath(contact.amonth).click()
         self.change_field_value("ayear", contact.annyear)
         self.change_field_value("address2", contact.address2)
         self.change_field_value("phone2", contact.privatephone)
