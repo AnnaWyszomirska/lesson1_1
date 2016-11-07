@@ -8,9 +8,9 @@ class Application:
 
     def __init__(self, browser, base_url):
         if browser == "chrome":
-            self.wd = webdriver.Chrome(executable_path="C:\\Windows\\System32\\chromedriver.exe")
-        #elif browser == "firefox":
-           # self.wd = webdriver.Firefox()
+            self.wd = webdriver.Chrome(executable_path="C:/tools/chromedriver.exe") #
+        elif browser == "firefox":
+           self.wd = webdriver.Firefox()
         elif browser == "ie":
             self.wd = webdriver.Ie()
         else:
