@@ -2,28 +2,8 @@
 
 from model.contact import Contact
 import pytest
-import random
-import string
+from data.add_contact import constant as testdata
 
-def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits + string.punctuation+ " "*2
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-def random_day():
-    day = [x for x in range(1,32)]
-    return random.choice(day)
-
-def random_month():
-    month = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"]
-    return random.choice(month)
-
-testdata = [
-        Contact(firstname=firstname, lastname=lastname, bday= bday,bmonth= bmonth)
-        for firstname in [random_string("firstname", 20)]
-        for lastname in ["", random_string("lastname", 20)]
-        for bday in ["",random_day()]
-        for bmonth in ["",random_month()]
-        ]
 
 @pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
 def test_add_contact(app, contact):
