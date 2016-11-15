@@ -164,3 +164,16 @@ class ContactHelper:
         privatephone = re.search("P: (.*)", text).group(1)
         return Contact(home=home,mobile=mobile, work=work, privatephone=privatephone)
 
+    def delete_contact_by_id(self, id):
+        wd=self.app.wd
+        self.app.open_home_page()
+        self.select_contact_by_id(id)
+        # submit deletion
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        wd.switch_to_alert().accept()
+        self.return_to_homepage()
+        self.contact_cache = None
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" %id).click()
