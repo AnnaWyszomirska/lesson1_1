@@ -35,7 +35,7 @@ def random_month():
 
 testdata = [Contact(firstname="", lastname="", bday= "",bmonth="")] + [
         Contact(firstname=random_string("firstname", 20), lastname=random_string("lastname", 20),
-                bday= random_day(),bmonth= random_month())
+                bday= random_day(),bmonth= random_month(), )
         for i in range(3)
         ]
 
