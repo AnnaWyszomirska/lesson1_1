@@ -1,4 +1,6 @@
 from model.group import Group
+from selenium.webdriver.support.select import Select
+import random
 
 class GroupHelper:
     def __init__(self,app):
@@ -101,3 +103,10 @@ class GroupHelper:
     def select_group_by_id(self,id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[value='%s']" %id).click()
+
+    def random_group_id(self):
+        wd = self.app.wd
+        self.open_groups_page()
+        group_list = wd.find_elements_by_name("selected[]")
+        group_id = random.choice(group_list).get_attribute("value")
+        return group_id

@@ -33,9 +33,9 @@ def random_month():
     month = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"]
     return random.choice(month)
 
-testdata = [Contact(firstname="", lastname="", bday= "",bmonth="")] + [
+testdata = [Contact(firstname="", lastname="", bday= "",bmonth="", new_group = '')] + [
         Contact(firstname=random_string("firstname", 20), lastname=random_string("lastname", 20),
-                bday= random_day(),bmonth= random_month(), )
+                bday= random_day(),bmonth= random_month(), new_group='name' )
         for i in range(3)
         ]
 

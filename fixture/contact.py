@@ -1,5 +1,8 @@
 from model.contact import Contact
 import re
+from selenium.webdriver.support.select import Select
+import random
+
 
 class ContactHelper:
 
@@ -179,3 +182,45 @@ class ContactHelper:
     def select_contact_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[value='%s']" %id).click()
+
+    contact_cache = None
+    def get_contacts_in_group(self, group_id):
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.app.open_home_page()
+            wd.find_element_by_xpath('//select[@name="group"]/option[@value="%s"]' % group_id).click()
+            self.contact_cache = []
+            for element in wd.find_elements_by_name("entry"):
+                cells = element.find_elements_by_tag_name("td")
+                text1 = cells[1].text
+                text2 = cells[2].text
+                id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+                address = cells[3].text
+                all_emails = cells[4].text
+                all_phones = cells[5].text
+                self.contact_cache.append(Contact(firstname=text2, lastname=text1, id=id, address=address,
+                                                  all_emails_form_home_page=all_emails,
+                                                  all_phones_from_home_page=all_phones))
+
+        return list(self.contact_cache)
+
+    def add_contact_into_group(self, id, group_id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath('//select[@name="to_group"]/option[@value="%s"]' % group_id).click()
+        wd.find_element_by_name("add").click()
+        self.contact_cache = None
+
+    def remove_contacts_from_group(self, id, group_id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_xpath('//select[@name="group"]/option[@value="%s"]' % group_id).click()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath("//input[@name='remove']").click()
+        self.contact_cache = None
+
+    def return_list(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_xpath("//*[text()='[wszystkie]']").click()
