@@ -25,9 +25,9 @@ def test_remove_contact_from_group(app, db, orm):
         ui_list = app.contact.get_contact_list()
         contact = random.choice(ui_list)
         app.contact.add_contact_into_group(contact.id, group_id)
-    else:
-        contact = random.choice(contacts_in_group)
-        app.contact.remove_contacts_from_group(contact.id, group_id)
-        contact_ui = app.contact.get_contacts_in_group(group_id)
-        contact_orm = orm.get_contacts_in_group(Group(id=group_id))
-        assert sorted(contact_ui, key=Contact.id_or_max) == sorted(contact_orm, key=Contact.id_or_max)
+
+    contact = random.choice(contacts_in_group)
+    app.contact.remove_contacts_from_group(contact.id, group_id)
+    contact_ui = app.contact.get_contacts_in_group(group_id)
+    contact_orm = orm.get_contacts_in_group(Group(id=group_id))
+    assert sorted(contact_ui, key=Contact.id_or_max) == sorted(contact_orm, key=Contact.id_or_max)
