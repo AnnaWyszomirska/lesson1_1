@@ -21,7 +21,7 @@ def test_change_in_the_contact(app,db):
                                 amonth="//div[@id='content']/form/select[4]//option[3]",
                                 )
     contact.id = old_contacts[index].id
-    app.contact.change_contact_by_index(index, contact)
+    app.contact.change_contact_by_id(index, contact)
     new_contacts = db.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
     old_contacts[index] = contact

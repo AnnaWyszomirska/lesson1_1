@@ -3,8 +3,8 @@ from model.group import Group
 import random
 
 
-def test_add_contact_into_group(app, db, orm):
-    if len(db.get_contact_list()) == 0:
+def test_add_contact_into_group(app,orm):
+    if len(app.get_contact_list()) == 0:
         app.contact.add(Contact(firstname="Anna", middlename="Joanna", lastname="Wyszomirska", nickname="aneczka",
                                 title="Title", company="New Company", address="My address information",
                                 home="34725475263", mobile="32456234236", work="2364623645", fax="243256452",
